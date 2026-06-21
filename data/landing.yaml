@@ -1,5 +1,5 @@
-# Certer Custom Hero Section
-myHero:
+# Certer Custom Hero Section (Overrides theme default hero)
+hero:
   enable: true
   weight: 10
   template: hero
@@ -17,12 +17,31 @@ myHero:
     btnText: "GitHub"
     url: "https://github.com/Menschomat/certer"
 
-# Explicitly disable the theme's default landing page sections
-hero:
-  enable: false
-
+# Certer Custom Feature Grid (Overrides theme default featureGrid)
 featureGrid:
-  enable: false
+  enable: true
+  weight: 20
+  template: "feature grid"
+  items:
+    - icon: "published_with_changes"
+      title: "Automated Renewals"
+      text: "Background scheduler checks certificate expirations and triggers renewal checks automatically every 5 minutes."
+    - icon: "layers"
+      title: "Container Native"
+      text: "Designed to run seamlessly inside Docker, Docker Compose, or Kubernetes environments out of the box."
+    - icon: "vpn_key"
+      title: "Argon2id Hashing"
+      text: "Hardened security using the Argon2id KDF and constant-time comparisons to prevent timing side-channel attacks."
+    - icon: "integration_instructions"
+      title: "Lego-Powered"
+      text: "Built on top of the Lego library to support ACME providers and solve DNS-01 and HTTP-01 challenges easily."
+    - icon: "dns"
+      title: "Terraform Integration"
+      text: "Provision and manage teams, keys, and certificates declaratively using our custom Certer Terraform provider."
+    - icon: "security"
+      title: "Scoped Credentials"
+      text: "Restrict token access to specific teams or individual certificate configurations for fine-grained multi-tenancy."
 
+# Disable the default image compare section
 imageCompare:
   enable: false
