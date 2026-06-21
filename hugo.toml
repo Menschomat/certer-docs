@@ -18,11 +18,13 @@ title = 'Certer Documentation'
 [params]
   # Theme Options
   themeColor = "emerald" # Options: blue, green, red, emerald, etc.
-  darkMode = true
   
   # Header/Brand
   logo = "img/logo.svg"
+
+  [params.docs]
+    darkMode = true
   
   # Footer Options
   [params.footer]
-    copyright = "© 2026 Certer Authors"
+    copyright = "© 2026 Mensch0mat"
