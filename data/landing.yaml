@@ -1,4 +1,4 @@
-# Hero Section
+# Certer Custom Hero Section
 myHero:
   enable: true
   weight: 10
@@ -11,8 +11,18 @@ myHero:
   ctaButton:
     icon: "rocket_launch"
     btnText: "Get Started"
-    url: "/docs/"
+    url: "/certer-docs/docs/" # Hardcoded subpath matching GitHub Pages deploy URL
   cta2Button:
     icon: "code"
     btnText: "GitHub"
     url: "https://github.com/Menschomat/certer"
+
+# Explicitly disable the theme's default landing page sections
+hero:
+  enable: false
+
+featureGrid:
+  enable: false
+
+imageCompare:
+  enable: false
