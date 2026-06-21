@@ -1,0 +1,28 @@
+baseURL = 'https://certer.mnescho.space/'
+locale = 'en-us'
+title = 'Certer Documentation'
+
+[module]
+  [[module.imports]]
+    path = "github.com/colinwilson/lotusdocs"
+    disable = false
+  [[module.imports]]
+    path = "github.com/gohugoio/hugo-mod-bootstrap-scss/v5"
+    disable = false
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[params]
+  # Theme Options
+  themeColor = "emerald" # Options: blue, green, red, emerald, etc.
+  darkMode = true
+  
+  # Header/Brand
+  logo = "img/logo.svg"
+  
+  # Footer Options
+  [params.footer]
+    copyright = "© 2026 Certer Authors"
