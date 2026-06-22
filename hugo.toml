@@ -18,6 +18,7 @@ title = 'Certer Documentation'
 [params]
   # Theme Options
   themeColor = "emerald" # Options: blue, green, red, emerald, etc.
+  custom_css = ["css/custom.css"]
   
   # Header/Brand
   logo = "img/logo.svg"
