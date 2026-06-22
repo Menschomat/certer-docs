@@ -37,6 +37,40 @@ Retrieve the full list of certificates the authenticated token is authorized to 
 
 ---
 
+## Get Raw PEM Files (No JSON)
+
+Directly download raw PEM blocks for a public certificate or private key. Handy for simple scripts (`curl`) that do not have `jq` or Python parsing capabilities.
+
+### Get Raw Certificate
+*   **Path**: `GET /api/v1/certificates/{identifier}/certificate`
+*   **Headers**: `Authorization: Bearer <fetch_token>`
+*   **Path Parameter**: `{identifier}` can be the Certificate UUID or a domain name (matches primary or SAN wildcard).
+*   **Response (`200 OK`)**: `text/plain` payload
+    ```text
+    -----BEGIN CERTIFICATE-----
+    MIIFdTCCBFWgAwIBAgISA2J...
+    -----END CERTIFICATE-----
+    ```
+
+### Get Raw Private Key
+*   **Path**: `GET /api/v1/certificates/{identifier}/private-key`
+*   **Headers**: `Authorization: Bearer <fetch_token>`
+*   **Path Parameter**: `{identifier}` can be the Certificate UUID or a domain name (matches primary or SAN wildcard).
+*   **Response (`200 OK`)**: `text/plain` payload
+    ```text
+    -----BEGIN EC PRIVATE KEY-----
+    MHQCAQEEIB4...
+    -----END EC PRIVATE KEY-----
+    ```
+
+### Handling Duplicate/Ambiguous Domains
+If `{identifier}` is a domain name that matches multiple certificate configurations:
+1. **Primary Domain Wins**: The endpoint prioritizes matching the primary domain over SANs.
+2. **Chronological Tie-Breaker (UUIDv7)**: If multiple configurations still match, the newest configuration (highest UUIDv7 value) is returned.
+3. **Explicit ID**: You can bypass ambiguity by passing the explicit Certificate UUID instead of the domain.
+
+---
+
 ## Scoping & Access Control
 
 When executing `GET /api/v1/certificates`, Certer inspects the request token claims and filters the return payload:
