@@ -12,34 +12,3 @@ body {
 .footer {
   flex-shrink: 0;
 }
-
-/* Dark Mode Overrides for Landing Page (Bootstrap 5) */
-[data-bs-theme="dark"] body {
-  background-color: #121212 !important;
-  color: #f8f9fa !important;
-}
-
-[data-bs-theme="dark"] .bg-white {
-  background-color: #1e1e1e !important;
-}
-
-[data-bs-theme="dark"] .bg-light {
-  background-color: #121212 !important;
-}
-
-[data-bs-theme="dark"] .text-dark {
-  color: #f8f9fa !important;
-}
-
-[data-bs-theme="dark"] .card {
-  background-color: #1e1e1e !important;
-  border-color: #2d2d2d !important;
-}
-
-[data-bs-theme="dark"] .border-bottom {
-  border-color: #2d2d2d !important;
-}
-
-[data-bs-theme="dark"] .text-muted {
-  color: #a0aec0 !important;
-}

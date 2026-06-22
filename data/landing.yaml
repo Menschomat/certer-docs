@@ -7,14 +7,7 @@ hero:
     text: "v1.0.0"
     color: "primary"
   title: "Certer"
-  subtitle: "Secure, centralized SSL/TLS automation for isolated networks."
-  info: "Stop distributing powerful DNS API credentials to every backend server, and stop opening outbound internet access for ACME validation.\n\nCerter centralizes all ACME negotiations (Let's Encrypt and ZeroSSL) in a single secure daemon. Your backend servers remain isolated in private networks, pulling their certificates locally using low-privilege, scoped bearer tokens and simple `curl` requests."
-  image:
-    path: "img"
-    filename: "hero_illustration.jpg"
-    alt: "Certer Secure Centralized Cert Manager"
-    boxShadow: true
-    rounded: true
+  subtitle: "Sleek, containerized certificate manager built on Lego, Let's Encrypt, and ZeroSSL."
   ctaButton:
     icon: "rocket_launch"
     btnText: "Get Started"
