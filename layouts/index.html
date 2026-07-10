@@ -1,11 +1,16 @@
 {{ define "main" }}
 <main class="home-main">
-  <p class="eyebrow">Documentation</p>
-  <h1>Certer</h1>
-  <p class="home-lead">Secure, centralized SSL/TLS automation for isolated networks.</p>
-  <div class="home-actions">
-    <a class="button primary" href="{{ "/docs/" | relURL }}">Read the documentation</a>
-    <a class="button" href="https://github.com/Menschomat/certer">View on GitHub</a>
+  <div class="home-hero">
+    <img class="home-logo" src="{{ "img/certer-logo.svg" | relURL }}" alt="Certer logo">
+    <div class="home-copy">
+      <p class="eyebrow">Documentation</p>
+      <h1>Certer</h1>
+      <p class="home-lead">Secure, centralized SSL/TLS automation for isolated networks.</p>
+      <div class="home-actions">
+        <a class="button primary" href="{{ "/docs/" | relURL }}">Read the documentation</a>
+        <a class="button" href="https://github.com/Menschomat/certer">View on GitHub</a>
+      </div>
+    </div>
   </div>
   <section class="home-section">
     <h2>Explore the docs</h2>

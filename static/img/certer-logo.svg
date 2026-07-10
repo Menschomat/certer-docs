@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
+  <title id="title">Certer logo</title>
+  <desc id="desc">A modern certificate mark with a verification seal.</desc>
+  <defs>
+    <linearGradient id="badge" x1="50" y1="28" x2="188" y2="216" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#416B82"/>
+      <stop offset=".56" stop-color="#233D4D"/>
+      <stop offset="1" stop-color="#152A36"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="120" y1="26" x2="120" y2="132" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#FFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="102" y1="60" x2="150" y2="196" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF"/>
+      <stop offset="1" stop-color="#D9E0E5"/>
+    </linearGradient>
+    <radialGradient id="seal" cx=".32" cy=".2" r=".9">
+      <stop stop-color="#FFB175"/>
+      <stop offset=".58" stop-color="#FE7F2D"/>
+      <stop offset="1" stop-color="#D95D19"/>
+    </radialGradient>
+    <clipPath id="badge-clip">
+      <rect x="24" y="24" width="192" height="192" rx="48"/>
+    </clipPath>
+  </defs>
+
+  <rect x="24" y="24" width="192" height="192" rx="48" fill="url(#badge)"/>
+  <rect x="24" y="24" width="192" height="192" rx="48" fill="url(#sheen)" clip-path="url(#badge-clip)"/>
+  <rect x="25.5" y="25.5" width="189" height="189" rx="46.5" fill="none" stroke="#EAECF0" stroke-opacity=".22" stroke-width="3"/>
+
+  <path d="M84 64h58l30 30v82a16 16 0 0 1-16 16H84a16 16 0 0 1-16-16V80a16 16 0 0 1 16-16Z" transform="translate(0 6)" fill="#000" opacity=".2"/>
+  <path d="M84 64h58l30 30v82a16 16 0 0 1-16 16H84a16 16 0 0 1-16-16V80a16 16 0 0 1 16-16Z" fill="url(#paper)"/>
+  <path d="M142 64v30h30" fill="none" stroke="#FE7F2D" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M93 112h54M93 132h38" fill="none" stroke="#233D4D" stroke-width="9" stroke-linecap="round"/>
+
+  <circle cx="145" cy="160" r="27" fill="url(#seal)"/>
+  <path d="M132 149a19 19 0 0 1 21-5" fill="none" stroke="#FFF" stroke-opacity=".28" stroke-width="4" stroke-linecap="round"/>
+  <path d="m132 160 9 9 18-20" fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
