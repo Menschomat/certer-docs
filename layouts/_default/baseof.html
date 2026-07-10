@@ -20,12 +20,14 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="{{ "/" | relURL }}" aria-label="Certer documentation home">
+      <a class="brand" href="{{ site.Home.RelPermalink }}" aria-label="Certer documentation home">
         <img class="brand-mark" src="{{ "img/certer-logo.svg" | relURL }}" alt="">
         <span>Certer</span>
       </a>
       <nav class="header-nav" aria-label="Primary navigation">
-        <a href="{{ "/docs/" | relURL }}">Documentation</a>
+        {{ with site.GetPage "section" "docs" }}
+        <a href="{{ .RelPermalink }}">Documentation</a>
+        {{ end }}
         <a href="https://github.com/Menschomat/certer">GitHub</a>
       </nav>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Theme: auto" title="Theme: auto">

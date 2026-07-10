@@ -8,7 +8,9 @@
     {{ partial "docs-nav.html" (dict "current" .) }}
   </details>
   <main class="doc-main">
-    <div class="breadcrumbs"><a href="{{ "/docs/" | relURL }}">Docs</a><span>/</span><span>{{ .Title }}</span></div>
+    {{ with site.GetPage "section" "docs" }}
+    <div class="breadcrumbs"><a href="{{ .RelPermalink }}">Docs</a><span>/</span><span>{{ $.Title }}</span></div>
+    {{ end }}
     <article class="doc-content">
       <header class="doc-heading">
         <h1>{{ .Title }}</h1>

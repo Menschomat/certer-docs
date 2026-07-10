@@ -7,7 +7,9 @@
       <h1>Certer</h1>
       <p class="home-lead">Secure, centralized SSL/TLS automation for isolated networks.</p>
       <div class="home-actions">
-        <a class="button primary" href="{{ "/docs/" | relURL }}">Read the documentation</a>
+        {{ with site.GetPage "section" "docs" }}
+        <a class="button primary" href="{{ .RelPermalink }}">Read the documentation</a>
+        {{ end }}
         <a class="button" href="https://github.com/Menschomat/certer">View on GitHub</a>
       </div>
     </div>
