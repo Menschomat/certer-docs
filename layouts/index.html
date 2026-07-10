@@ -1,0 +1,30 @@
+{{ define "main" }}
+<main class="home-main">
+  <p class="eyebrow">Documentation</p>
+  <h1>Certer</h1>
+  <p class="home-lead">Secure, centralized SSL/TLS automation for isolated networks.</p>
+  <div class="home-actions">
+    <a class="button primary" href="{{ "/docs/" | relURL }}">Read the documentation</a>
+    <a class="button" href="https://github.com/Menschomat/certer">View on GitHub</a>
+  </div>
+  <section class="home-section">
+    <h2>Explore the docs</h2>
+    <div class="home-links">
+      {{ with site.GetPage "section" "docs" }}
+        {{ range .Sections.ByWeight }}
+        <a class="page-link" href="{{ .RelPermalink }}">
+          <strong>{{ .Title }}</strong>
+          {{ with .Description }}<span>{{ . }}</span>{{ end }}
+        </a>
+        {{ end }}
+        {{ range .RegularPages.ByWeight }}
+        <a class="page-link" href="{{ .RelPermalink }}">
+          <strong>{{ .Title }}</strong>
+          {{ with .Description }}<span>{{ . }}</span>{{ end }}
+        </a>
+        {{ end }}
+      {{ end }}
+    </div>
+  </section>
+</main>
+{{ end }}

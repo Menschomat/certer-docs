@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="docs-layout">
+  <aside class="docs-sidebar">
+    {{ partial "docs-nav.html" (dict "current" .) }}
+  </aside>
+  <details class="mobile-nav">
+    <summary>Browse documentation</summary>
+    {{ partial "docs-nav.html" (dict "current" .) }}
+  </details>
+  <main class="doc-main">
+    <div class="breadcrumbs"><a href="{{ "/docs/" | relURL }}">Docs</a><span>/</span><span>{{ .Title }}</span></div>
+    <article class="doc-content">
+      <header class="doc-heading">
+        <h1>{{ .Title }}</h1>
+        {{ with .Description }}<p>{{ . }}</p>{{ end }}
+      </header>
+      {{ .Content }}
+    </article>
+  </main>
+</div>
+{{ end }}

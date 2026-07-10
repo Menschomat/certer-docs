@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale | default "en" }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ .Description | default site.Params.description }}">
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+  <link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="{{ "/" | relURL }}" aria-label="Certer documentation home">
+        <span class="brand-mark">C</span>
+        <span>Certer</span>
+      </a>
+      <nav class="header-nav" aria-label="Primary navigation">
+        <a href="{{ "/docs/" | relURL }}">Documentation</a>
+        <a href="https://github.com/Menschomat/certer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  {{ block "main" . }}{{ end }}
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>{{ site.Params.footer.copyright }}</span>
+    </div>
+  </footer>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    mermaid.initialize({ startOnLoad: true, securityLevel: "strict", theme: prefersDark ? "dark" : "default" });
+  </script>
+</body>
+</html>
