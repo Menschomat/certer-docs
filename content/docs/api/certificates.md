@@ -37,6 +37,37 @@ Retrieve the full list of certificates the authenticated token is authorized to 
 
 ---
 
+## Get Certificate Status Without PEM Material
+
+Use these endpoints for monitoring, audit reports, dashboards, and health checks that need certificate status without transferring certificate bodies or private keys.
+
+*   **Paths**:
+    *   `GET /api/v1/certificates/status`
+    *   `GET /api/v1/certificates/{identifier}/status`
+*   **Headers**: `Authorization: Bearer <fetch_token_or_admin_token>`
+*   **Response (`200 OK`)**:
+    ```json
+    {
+      "id": "019eebb8-74a1-70da-96fb-1d2d28db29d0",
+      "domain": "example.com",
+      "sans": [
+        "*.example.com"
+      ],
+      "issued": true,
+      "status": "ok",
+      "issued_at": "2026-01-01T00:00:00Z",
+      "expires_at": "2026-04-01T00:00:00Z",
+      "days_remaining": 72,
+      "is_valid": true,
+      "issuer_common_name": "R3",
+      "serial_number": "5f2b8c..."
+    }
+    ```
+
+The `status` value is `ok`, `warning`, or `critical`. A certificate is marked `warning` when it has 30 days or fewer remaining, and `critical` when it is expired, not currently valid, missing certificate/key files, or cannot be parsed.
+
+---
+
 ## Get Raw PEM Files (No JSON)
 
 Directly download raw PEM blocks for a public certificate or private key. Handy for simple scripts (`curl`) that do not have `jq` or Python parsing capabilities.
