@@ -43,7 +43,7 @@ graph TD
 ## Core Characteristics
 
 ### 1. File-Based Storage
-Certer stores all issued certificates and keys in the `/app/certs/` mount as PEM files:
+Certer stores all issued certificates and keys in the `/certs/` mount as PEM files:
 *   `{certificate_uuid}.crt`: Contains the full certificate chain (end-entity cert + intermediate CAs).
 *   `{certificate_uuid}.key`: Contains the PEM-encoded private key.
 

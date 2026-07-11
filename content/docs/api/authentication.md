@@ -5,7 +5,7 @@ icon: "vpn_key"
 weight: 410
 ---
 
-All requests to the Certer REST API must include a valid Authorization token header. 
+All protected Certer REST API requests must include a valid Authorization token header. The `/health` and `/api/v1/hello` endpoints are public.
 
 ## Authorization Header
 
@@ -26,7 +26,7 @@ When a request arrives, the server processes token verification as follows:
 
 1.  **Extract**: The Bearer token is parsed from the HTTP header.
 2.  **Argon2id KDF**: The server checks the key configurations and hashes the request token using the Argon2id key derivation function.
-3.  **Constant-Time Comparison**: The hash of the request token is verified against the stored hash in `config.json` using `crypto/subtle.ConstantTimeCompare`. This guarantees complete protection against timing side-channel attacks.
+3.  **Constant-Time Comparison**: The hash of the request token is verified against the stored hash in `config.json` using `crypto/subtle.ConstantTimeCompare` to avoid token-dependent comparison timing.
 
 ### Argon2id Parameters
 

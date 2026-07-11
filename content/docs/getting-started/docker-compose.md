@@ -31,18 +31,16 @@ version: '3.8'
 
 services:
   certer:
-    image: m0space/certer:latest
+    image: ghcr.io/menschomat/certer:latest
     container_name: certer-daemon
     ports:
       - "8080:8080"
     volumes:
-      - ./certs:/app/certs
-      - ./config.json:/app/config.json
+      - ./certs:/certs
+      - ./config.json:/config.json
     environment:
-      - CLOUDFLARE_EMAIL=${CLOUDFLARE_EMAIL}
-      - CLOUDFLARE_API_KEY=${CLOUDFLARE_API_KEY}
-      - LOG_LEVEL=${LOG_LEVEL:-info}
-      - LOG_STYLE=${LOG_STYLE:-json}
+      - DNS_PROVIDER=${DNS_PROVIDER:-cloudflare}
+      - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
     restart: unless-stopped
 ```
 
@@ -53,13 +51,9 @@ services:
 Configure your DNS API variables locally in a `.env` file. These values will be automatically injected into your compose configuration when executing:
 
 ```ini
-# Cloudflare ACME credentials
-CLOUDFLARE_EMAIL=you@example.com
-CLOUDFLARE_API_KEY=your_private_cloudflare_dns_api_token
-
-# Daemon configuration defaults
-LOG_LEVEL=info
-LOG_STYLE=json
+# DNS-01 solver configuration
+DNS_PROVIDER=cloudflare
+CF_DNS_API_TOKEN=your_private_cloudflare_dns_api_token
 ```
 
 ---

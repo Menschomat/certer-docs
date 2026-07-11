@@ -7,7 +7,7 @@ weight: 430
 
 These endpoints are used by standard clients (proxies, load balancers, cron tasks) to retrieve the raw PEM-encoded certificate assets.
 
-They require a Bearer token mapped to a standard fetch API key (`admin = false`) authorized to access the targeted team or certificate.
+The raw PEM endpoints require a Bearer token mapped to a standard fetch API key (`admin = false`) authorized to access the targeted team or certificate. Admin tokens can list certificate configurations and status metadata, but they are blocked from raw certificate and private key download routes.
 
 ---
 
@@ -21,7 +21,7 @@ Retrieve the full list of certificates the authenticated token is authorized to 
     ```json
     [
       {
-        "certificate_id": "019eebb8-74a1-70da-96fb-1d2d28db29d0",
+        "id": "019eebb8-74a1-70da-96fb-1d2d28db29d0",
         "domain": "example.com",
         "sans": [
           "*.example.com"
@@ -29,11 +29,13 @@ Retrieve the full list of certificates the authenticated token is authorized to 
         "issued": true,
         "certificate": "-----BEGIN CERTIFICATE-----\nMIIFdTCCBFWgAwIBAgISA2J...\n-----END CERTIFICATE-----",
         "private_key": "-----BEGIN EC PRIVATE KEY-----\nMHQCAQEEIB4...\n-----END EC PRIVATE KEY-----",
-        "cert_filename": "019eebb8-74a1-70da-96fb-1d2d28db29d0.crt",
-        "key_filename": "019eebb8-74a1-70da-96fb-1d2d28db29d0.key"
+        "cert_filename": "example.com.crt",
+        "key_filename": "example.com.key"
       }
     ]
     ```
+
+The JSON filename values are friendly download names based on the primary domain. On disk, Certer stores issued PEM files by certificate ID as `{id}.crt` and `{id}.key`.
 
 ---
 
@@ -54,6 +56,8 @@ Use these endpoints for monitoring, audit reports, dashboards, and health checks
         "*.example.com"
       ],
       "issued": true,
+      "cert_filename": "example.com.crt",
+      "key_filename": "example.com.key",
       "status": "ok",
       "issued_at": "2026-01-01T00:00:00Z",
       "expires_at": "2026-04-01T00:00:00Z",
@@ -108,4 +112,4 @@ When executing `GET /api/v1/certificates`, Certer inspects the request token cla
 
 1.  **Allowed Teams check**: If the API key has `allowed_teams` specified (e.g. `["team-A-uuid"]`), the request will *only* return certificates where `team_id = "team-A-uuid"`.
 2.  **Allowed Certificates check**: If the API key has `allowed_certificates` specified (e.g. `["cert-1-uuid"]`), the request will *only* return the matching certificate configuration.
-3.  **Issuance status check**: Only configurations where `"issued": true` and the corresponding PEM files exist in storage are returned with raw PEM bodies. If a certificate configuration exists but has not yet completed ACME negotiation, it is skipped or returned with empty values.
+3.  **Issuance status check**: Issuance is derived from the PEM files in storage, not from a config field. Accessible certificate configurations are returned even before issuance; `issued` is `false` and PEM body fields are omitted until both certificate and key files exist.

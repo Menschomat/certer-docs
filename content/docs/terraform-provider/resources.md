@@ -75,7 +75,7 @@ output "client_token" {
 
 ### Argument Reference
 *   `description` (String, Optional): User-friendly description of token purpose.
-*   `admin` (Boolean, Required): If `true`, grants administrative control. If `false`, grants access only to fetch PEM files.
+*   `admin` (Boolean, Required): If `true`, grants configuration API access. If `false`, grants access to certificate fetch and status endpoints.
 *   `allowed_teams` (List of Strings, Optional): Limit API key access to target teams.
 *   `allowed_certificates` (List of Strings, Optional): Limit token access to target certificates.
 
@@ -91,6 +91,6 @@ Use the `admin` flag combined with scoping arrays to secure credentials:
 
 | Key Type | `admin` | `allowed_teams` | Scope / Capabilities |
 |---|---|---|---|
-| **Root Admin** | `true` | `[]` *(Empty)* | Absolute CRUD controls across all teams and configurations. |
+| **Root Admin** | `true` | `[]` *(Empty)* | CRUD control across all dynamic teams, keys, and certificate configurations. |
 | **Scoped Admin** | `true` | `["team_uuid"]` | Configure certificates and keys ONLY inside the allowed teams. |
-| **Fetch Client** | `false` | `["team_uuid"]` | Only allowed to fetch raw certificate assets. No configuration changes. |
+| **Fetch Client** | `false` | `["team_uuid"]` | Fetch raw certificate assets and status metadata. No configuration changes. |

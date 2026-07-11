@@ -42,8 +42,8 @@ All attributes below (except `certificate_id`) are read-only (`Computed`). If Ce
 | `issued` | Boolean | `true` if the certificate is actively generated on the server. |
 | `certificate` | String | The PEM-encoded certificate chain (Sensitive). |
 | `private_key` | String | The PEM-encoded private key (Sensitive). |
-| `cert_filename` | String | The filename stored in Certer's repository. |
-| `key_filename` | String | The key filename stored in Certer's repository. |
+| `cert_filename` | String | Suggested certificate download filename returned by Certer. |
+| `key_filename` | String | Suggested key download filename returned by Certer. |
 | `issued_at` | String | The start of validity (`NotBefore`) in RFC3339 format. |
 | `expires_at` | String | The end of validity (`NotAfter`) in RFC3339 format. |
 | `days_remaining` | Integer | Number of days remaining before certificate expiration. |

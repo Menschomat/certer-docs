@@ -21,8 +21,7 @@ metadata:
   namespace: certer
 type: Opaque
 stringData:
-  cloudflare-email: "admin@yourdomain.com"
-  cloudflare-api-key: "your_cloudflare_api_token"
+  cf-dns-api-token: "your_cloudflare_dns_api_token"
 ```
 
 ---
@@ -51,7 +50,7 @@ data:
         {
           "id": "019eebb8-74a1-70da-96fb-1d2d28db29c0",
           "description": "admin-token",
-          "token_hash": "$argon2id$v=19$m=65536,t=3,p=2$UnVxYWp4djNhSDBhN1E5Nw$8d1S5G34vH23c...",
+          "token": "$argon2id$v=19$m=65536,t=3,p=2$UnVxYWp4djNhSDBhN1E5Nw$8d1S5G34vH23c...",
           "allowed_teams": [],
           "allowed_certificates": [],
           "admin": true
@@ -107,30 +106,23 @@ spec:
     spec:
       containers:
         - name: certer
-          image: m0space/certer:latest
+          image: ghcr.io/menschomat/certer:latest
           ports:
             - containerPort: 8080
               name: http-api
           env:
-            - name: CLOUDFLARE_EMAIL
+            - name: DNS_PROVIDER
+              value: "cloudflare"
+            - name: CF_DNS_API_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: certer-credentials
-                  key: cloudflare-email
-            - name: CLOUDFLARE_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: certer-credentials
-                  key: cloudflare-api-key
-            - name: LOG_LEVEL
-              value: "info"
-            - name: LOG_STYLE
-              value: "json"
+                  key: cf-dns-api-token
           volumeMounts:
             - name: certs-vol
-              mountPath: /app/certs
+              mountPath: /certs
             - name: config-vol
-              mountPath: /app/config.json
+              mountPath: /config.json
               subPath: config.json
       volumes:
         - name: certs-vol
