@@ -1,6 +1,6 @@
 :root {
   color-scheme: light dark;
-  --header-height: 64px;
+  --header-height: 65px;
   --bg: #EAECF0;
   --surface: #f8f9fb;
   --surface-muted: #dde2e8;
@@ -248,8 +248,8 @@ a:hover { color: var(--ink); }
 
 .docs-sidebar {
   position: sticky;
-  top: calc(var(--header-height) + 24px);
-  max-height: calc(100vh - var(--header-height) - 48px);
+  top: calc(var(--header-height) + 48px);
+  max-height: calc(100vh - var(--header-height) - 96px);
   overflow-y: auto;
 }
 
@@ -551,7 +551,7 @@ a:hover { color: var(--ink); }
 }
 
 @media (max-width: 560px) {
-  :root { --header-height: 56px; }
+  :root { --header-height: 57px; }
   .header-inner { min-height: 56px; }
   .header-nav a:first-child { display: none; }
   .header-inner {
