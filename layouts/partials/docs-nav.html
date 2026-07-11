@@ -1,6 +1,6 @@
 {{ $docs := site.GetPage "section" "docs" }}
 <nav class="docs-nav" aria-label="Documentation navigation">
-  <a class="nav-home{{ if eq .current.RelPermalink $docs.RelPermalink }} is-active{{ end }}" href="{{ $docs.RelPermalink }}">Documentation home</a>
+  <a class="nav-home{{ if eq .current.RelPermalink $docs.RelPermalink }} is-active{{ end }}" href="{{ $docs.RelPermalink }}">Welcome to Certer</a>
 
   {{ range $docs.RegularPages.ByWeight }}
     <a class="nav-link{{ if eq $.current.RelPermalink .RelPermalink }} is-active{{ end }}" href="{{ .RelPermalink }}">{{ .Title }}</a>
@@ -8,7 +8,7 @@
 
   {{ range $docs.Sections.ByWeight }}
     <div class="nav-group">
-      <div class="nav-group-title">{{ .Title }}</div>
+      <a class="nav-group-title{{ if eq $.current.RelPermalink .RelPermalink }} is-active{{ end }}" href="{{ .RelPermalink }}">{{ .Title }}</a>
       {{ range .RegularPages.ByWeight }}
         <a class="nav-link{{ if eq $.current.RelPermalink .RelPermalink }} is-active{{ end }}" href="{{ .RelPermalink }}">{{ .Title }}</a>
       {{ end }}
