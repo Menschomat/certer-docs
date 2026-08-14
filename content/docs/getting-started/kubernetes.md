@@ -145,3 +145,10 @@ spec:
   selector:
     app: certer
 ```
+
+---
+
+## Next Steps
+
+* **Sync to Ingress Controllers**: See the [External Secrets Operator (ESO) & Traefik Tutorial](../../tutorials/kubernetes-eso-traefik/) to automatically sync certificates to TLS secrets for Traefik Ingress.
+
