@@ -103,9 +103,9 @@ metadata:
 spec:
   provider:
     webhook:
-      url: "http://certer-internal.certer.svc.cluster.local:8080/api/v1/certificates/{{ .remoteRef.key }}"
+      url: "http://certer-internal.certer.svc.cluster.local:8080/api/v1/certificates/{{ .remoteRef.key }}/{{ .remoteRef.property }}"
       headers:
-        Authorization: "Bearer {{ .token }}"
+        Authorization: "Bearer {{ .token.token }}"
       secrets:
         - name: token
           secretRef:
@@ -125,7 +125,7 @@ kubectl apply -f certer-secretstore.yaml
 
 Create an `ExternalSecret` resource. Certer provides raw PEM endpoints (`/certificates/{identifier}/certificate` and `/certificates/{identifier}/private-key`) where `{identifier}` can be the domain name or certificate UUID.
 
-The `ExternalSecret` specifies the `remoteRef.key` paths which ESO interpolates into the `SecretStore` webhook URL:
+The `ExternalSecret` specifies `remoteRef.key` (domain) and `remoteRef.property` (endpoint) which ESO interpolates into the `SecretStore` webhook URL:
 
 ```yaml
 apiVersion: external-secrets.io/v1
@@ -149,10 +149,12 @@ spec:
   data:
     - secretKey: certificate
       remoteRef:
-        key: "example.com/certificate"
+        key: "example.com"
+        property: "certificate"
     - secretKey: privateKey
       remoteRef:
-        key: "example.com/private-key"
+        key: "example.com"
+        property: "private-key"
 ```
 
 Apply the ExternalSecret:
