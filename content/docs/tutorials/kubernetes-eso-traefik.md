@@ -75,6 +75,8 @@ kind: Secret
 metadata:
   name: certer-api-token
   namespace: default
+  labels:
+    external-secrets.io/type: webhook
 type: Opaque
 stringData:
   token: "YOUR_CERTER_CLEARTEXT_TOKEN"
@@ -93,7 +95,7 @@ kubectl apply -f certer-token-secret.yaml
 Create an ESO `SecretStore` (or cluster-wide `ClusterSecretStore`) utilizing the **Webhook** provider. The `SecretStore` points to Certer's API base URL and dynamically injects the Bearer token from the secret created in Step 2:
 
 ```yaml
-apiVersion: external-secrets.io/v1beta1
+apiVersion: external-secrets.io/v1
 kind: SecretStore
 metadata:
   name: certer-backend
@@ -101,7 +103,7 @@ metadata:
 spec:
   provider:
     webhook:
-      url: "http://certer.certer.svc.cluster.local:8080/api/v1"
+      url: "http://certer-internal.certer.svc.cluster.local:8080/api/v1/certificates/{{ .remoteRef.key }}"
       headers:
         Authorization: "Bearer {{ .token }}"
       secrets:
@@ -123,10 +125,10 @@ kubectl apply -f certer-secretstore.yaml
 
 Create an `ExternalSecret` resource. Certer provides raw PEM endpoints (`/certificates/{identifier}/certificate` and `/certificates/{identifier}/private-key`) where `{identifier}` can be the domain name or certificate UUID.
 
-The `ExternalSecret` fetches both PEM endpoints and constructs a `kubernetes.io/tls` Secret with `tls.crt` and `tls.key`:
+The `ExternalSecret` specifies the `remoteRef.key` paths which ESO interpolates into the `SecretStore` webhook URL:
 
 ```yaml
-apiVersion: external-secrets.io/v1beta1
+apiVersion: external-secrets.io/v1
 kind: ExternalSecret
 metadata:
   name: example-com-tls-sync
@@ -147,10 +149,10 @@ spec:
   data:
     - secretKey: certificate
       remoteRef:
-        url: "/certificates/example.com/certificate"
+        key: "example.com/certificate"
     - secretKey: privateKey
       remoteRef:
-        url: "/certificates/example.com/private-key"
+        key: "example.com/private-key"
 ```
 
 Apply the ExternalSecret:
