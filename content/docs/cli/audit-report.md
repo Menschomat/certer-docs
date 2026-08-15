@@ -44,3 +44,9 @@ The CLI also supports environment variables:
 | `AUDIT_SAMPLE` | Render built-in sample data without contacting the Certer API. |
 
 When `-output` or `AUDIT_OUTPUT` is not set, the selected report is printed to stdout.
+
+---
+
+### See Also
+
+* [Self-Refreshing Audit Dashboard in Kubernetes](/docs/tutorials/kubernetes-dashboard/) - Step-by-step guide to hosting an auto-refreshing dashboard in Kubernetes using Nginx and the sidecar pattern.
